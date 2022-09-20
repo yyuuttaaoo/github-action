@@ -48,7 +48,7 @@ jobs:
 
       - name: Build Docker
         if: matrix.runner == 'ubuntu'
-        run: ping -c 3 -w 3 sls-opensource-registry.cn-shanghai.cr.aliyuncs.com || :; ping -c 3 -w 3 sls-opensource-registry.us-east-1.cr.aliyuncs.com || :;
+        run: curl -o /dev/null -s -m 3 -w "%{time_connect}" https://sls-opensource-registry.cn-shanghai.cr.aliyuncs.com; curl -o /dev/null -s -m 4 -w "%{time_connect}" https://sls-opensource-registry.us-east-1.cr.aliyuncs.com;
 
   result:
     runs-on: ubuntu-latest
